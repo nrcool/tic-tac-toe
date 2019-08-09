@@ -11,54 +11,60 @@ export default class Maingame extends Component {
             playerO:"its O turn",
             isX:false,
             value:"O",
-            array:[],
+            array:Array(9).fill(null),
             winner:false,
             winnername:""
         }
     }
     handlevalue=(i)=>{
         let arr=this.state.array;
-        if(arr[i]===undefined&&this.state.winner===false){
+        if(arr[i]===null&&this.state.winner===false){
              arr[i]=this.state.isX?"X":"O";
             this.setState({
                 isX:!this.state.isX,
                 array:arr
-            }) 
-            this.winner()  
-        }
-       
+            })  
+            this.winner() 
+        }   
     }
    winner=()=>{
        const samplearray=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
         let data=this.state.array;
         let playerx=this.state.isX;
-        for(let i=0;i<samplearray.length;i++){
-           const [a,b,c]=samplearray[i];
-           if(data[a]&&data[a]===data[b]&&data[b]===data[c]){
-            if(playerx){
-                this.setState({
-                    winnername:"X is a Winner",
-                    playerO:"",
-                    playerX:""
-
-                })
-            } else{
-                this.setState({
-                    winnername:"O is a Winner",
-                    playerO:"",
-                    playerX:""
-
-                })
-            }
+        if(!this.state.array.includes(null)&&this.state.winner===false){
             this.setState({
-                winner:true
+                winnername:"its a DRAW",
+                playerO:"",
+                playerX:""
+
             })
-        }
-        }
-   
+         }
+            for(let i=0;i<samplearray.length;i++){
+                const [a,b,c]=samplearray[i];
+                if(data[a]&&data[a]===data[b]&&data[b]===data[c]){
+                 if(playerx){
+                     this.setState({
+                         winnername:"X is a Winner",
+                         playerO:"",
+                         playerX:""
+     
+                     })
+                 } else{
+                     this.setState({
+                         winnername:"O is a Winner",
+                         playerO:"",
+                         playerX:""
+     
+                     })
+                 }
+                 this.setState({
+                     winner:true
+                 })
+             }
+          
+             }
     }
     render() {
-       
         return (
             <div className="blockset">
                 <div className="set">

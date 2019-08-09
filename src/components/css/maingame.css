@@ -6,3 +6,15 @@
 .set{
     display: flex;
 }
+.btn{
+    display: inline-block;
+    font-size: 20px;
+    padding: 10px;
+    outline: none;
+    background: greenyellow;
+
+
+}
+.btn:hover{
+    background: yellow;
+}

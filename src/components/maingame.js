@@ -64,6 +64,18 @@ export default class Maingame extends Component {
           
              }
     }
+    playagain=()=>{
+   
+        this.setState({
+            playerX:"its X turn",
+            playerO:"its O turn",
+            isX:this.state.isX,
+            value:"O",
+            array:Array(9).fill(null),
+            winner:false,
+            winnername:""
+        })
+    }
     render() {
         return (
             <div className="blockset">
@@ -83,6 +95,7 @@ export default class Maingame extends Component {
                 <Block onClick={()=>this.handlevalue(8)}> {this.state.array[8]} </Block>
                 </div>
                 <h1>{this.state.isX?this.state.playerX:this.state.playerO}{this.state.winnername}</h1>
+                <button className="btn" onClick={this.playagain}>PLAY AGAIN</button>
             </div>
         )
     }
